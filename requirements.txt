@@ -1,0 +1,5 @@
+llama-index==0.12.3
+llama-index-readers-file==0.4.0
+llama-index-llms-ollama==0.1.9     # branche 0.12 compatible
+llama-index-embeddings-ollama==0.5.0
+gradio==4.31.2

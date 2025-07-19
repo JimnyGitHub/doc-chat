@@ -1,0 +1,27 @@
+# ───────── Environnements Python ─────────
+.venv/
+venv/            
+
+__pycache__/
+*.py[cod]
+
+# Build / dist
+dist/
+build/
+*.egg-info/
+
+# Logs et caches divers
+*.log
+.cache/
+pip-wheel-metadata/
+
+# ───────── Éditeurs / IDE ─────────
+.idea/
+.vscode/
+
+# Artefacts système
+.DS_Store
+Thumbs.db
+
+# Fichier de config local non versionné
+settings.json
