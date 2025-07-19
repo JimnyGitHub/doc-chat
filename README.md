@@ -155,3 +155,8 @@ python app.py
 
 Le projet est entièrement local et fonctionne sur toutes les plateformes compatibles avec Python et Ollama.
 
+---
+
+## 📄 Licence
+
+Ce projet est distribué sous la licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus d'informations.
