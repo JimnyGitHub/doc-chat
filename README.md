@@ -78,6 +78,10 @@ Une fois le `venv` activé :
 ```bash
 pip install -r requirements.txt
 ```
+Ensuite, copiez le fichier d'exemple pour créer votre configuration locale :
+```bash
+cp settings.example.json settings.json
+```
 
 ---
 
