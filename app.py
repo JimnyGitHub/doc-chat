@@ -1,11 +1,25 @@
 import json
 from pathlib import Path
+import requests
 
 from llama_index.core import Document, VectorStoreIndex
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core.settings import Settings
 import gradio as gr
+
+# ── 0) vérification du serveur Ollama ───────────────────────
+def check_ollama(url: str = "http://localhost:11434") -> None:
+    """Vérifie que le serveur Ollama est disponible."""
+    try:
+        r = requests.get(f"{url}/api/tags", timeout=5)
+        r.raise_for_status()
+    except Exception as e:
+        raise SystemExit(
+            f"Ollama semble indisponible sur {url}. Lancez `ollama serve` ou `ollama run mistral` dans un autre terminal."
+        ) from e
+
+check_ollama()
 
 # ── 1) chemin projet ────────────────────────────────────────
 with open("settings.json") as f:

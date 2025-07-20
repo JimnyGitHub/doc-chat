@@ -115,6 +115,10 @@ python app.py
 
 Une interface web s’ouvrira automatiquement.
 
+Si vous obtenez une erreur de type `RemoteProtocolError: Server disconnected`,
+assurez‑vous que le serveur **Ollama** est bien lancé via `ollama serve` ou
+`ollama run mistral` dans un autre terminal.
+
 ---
 
 ## 💬 Exemples de questions
