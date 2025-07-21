@@ -23,21 +23,33 @@ check_ollama()
 
 # ── 1) chemin projet ────────────────────────────────────────
 with open("settings.json") as f:
-    root = Path(json.load(f)["project_root"]).resolve()
+    cfg = json.load(f)
+
+root = Path(cfg["project_root"]).resolve()
+# Extensions à prendre en compte, exemple : [".md", ".adoc"]
+exts = {e.lower() for e in cfg.get("extensions", [".md", ".adoc", ".puml"])}
 if not root.exists():
     raise FileNotFoundError(root)
 
 # ── 2) lecture fichiers ─────────────────────────────────────
 docs = []
+# Dossiers à exclure pour accélérer le scan
+skip_dirs = {".git", ".venv", "node_modules", "target"}
 for f in root.rglob("*"):
-    if f.suffix.lower() in {".md", ".adoc", ".puml"}:
+    # Ignorer les fichiers situés dans les dossiers exclus
+    if any(part in skip_dirs for part in f.parts):
+        continue
+    if f.is_file() and f.suffix.lower() in exts:
         try:
             docs.append(Document(text=f.read_text(encoding="utf-8"),
                                  metadata={"path": str(f)}))
         except Exception as e:
             print(f"⚠️ {f} ignoré — {e}")
 if not docs:
-    raise ValueError("Aucun .md/.adoc/.puml trouvé")
+    raise ValueError(
+        "Aucun fichier correspondant aux extensions "
+        f"{', '.join(sorted(exts))} trouvé"
+    )
 
 # ── 3) config 100 % locale ──────────────────────────────────
 Settings.llm         = Ollama(model="mistral")

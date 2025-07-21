@@ -1,1 +1,4 @@
-{ "project_root": "." }
+{
+  "project_root": ".",
+  "extensions": [".md", ".adoc", ".puml"]
+}
