@@ -1,6 +1,6 @@
 # 🤖 doc-chat – Assistant IA local d'interrogation de docs de projet
 
-\`\` est un agent IA local qui vous permet d’interroger la documentation de n’importe quel projet à partir de ses fichiers `.md`, `.adoc`, `.puml`, etc.
+**`doc-chat`** est un agent IA local qui vous permet d’interroger la documentation de n’importe quel projet à partir de ses fichiers `.md`, `.adoc`, `.puml`, etc.
 
 Il fonctionne **en local**, sans cloud, grâce à [Ollama](https://ollama.com) et [llama-index](https://github.com/jerryjliu/llama_index).
 
@@ -45,7 +45,7 @@ Votre projet doit contenir :
 
 ### 🧪 Création du venv
 
-Dans un terminal à la racine de `java-doc-chat` :
+Dans un terminal à la racine de `doc-chat` :
 
 ```bash
 python -m venv .venv
@@ -93,11 +93,12 @@ cp settings.example.json settings.json
 cp settings.example.json settings.json
 ```
 
-2. Modifiez le fichier `settings.json` pour pointer vers le **chemin local** de votre projet Java :
+2. Modifiez le fichier `settings.json` pour pointer vers le **chemin local** de votre projet et définir les extensions à indexer :
 
 ```json
 {
-  "project_root": "../chemin/vers/mon-projet-java/"
+  "project_root": "../chemin/vers/mon-projet/",
+  "extensions": [".md", ".adoc"]
 }
 ```
 
@@ -132,7 +133,7 @@ assurez‑vous que le serveur **Ollama** est bien lancé via `ollama serve` ou
 ## 📁 Structure du projet
 
 ```
-java-doc-chat/
+doc-chat/
 ├── app.py
 ├── requirements.txt
 ├── settings.example.json
@@ -146,8 +147,8 @@ java-doc-chat/
 ## 🛠️ Réinstallation rapide
 
 ```bash
-git clone https://mon.gitlab/java-doc-chat.git
-cd java-doc-chat
+git clone https://mon.gitlab/doc-chat.git
+cd doc-chat
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
