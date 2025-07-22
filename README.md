@@ -111,8 +111,9 @@ Ce fichier est ignoré dans `.gitignore`.
 Une fois le venv activé et les dépendances installées :
 
 ```bash
-python app.py
+python app.py [--debug]
 ```
+L’option `--debug` affiche les étapes détaillées et la liste des fichiers lus.
 
 Une interface web s’ouvrira automatiquement.
 
