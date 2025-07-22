@@ -37,4 +37,4 @@ fi
 
 # 🚀 Lancer l'application
 echo "🚀 Lancement de l'assistant IA..."
-python app.py
+python app.py --debug
