@@ -121,6 +121,10 @@ Si vous obtenez une erreur de type `RemoteProtocolError: Server disconnected`,
 assurez‑vous que le serveur **Ollama** est bien lancé via `ollama serve` ou
 `ollama run mistral` dans un autre terminal.
 
+Si l'interface ne s'ouvre pas automatiquement, accédez-y via [http://localhost:7860](http://localhost:7860).
+
+Lors de la première utilisation, lancez `ollama run mistral` une fois pour télécharger le modèle localement.
+
 ---
 
 ## 💬 Exemples de questions
