@@ -93,12 +93,12 @@ cp settings.example.json settings.json
 cp settings.example.json settings.json
 ```
 
-2. Modifiez le fichier `settings.json` pour pointer vers le **chemin local** de votre projet et définir les extensions à indexer :
-
+2. Modifiez le fichier `settings.json` pour indiquer le **chemin local** du projet, les extensions à indexer et les dossiers à ignorer :
 ```json
 {
   "project_root": "../chemin/vers/mon-projet/",
-  "extensions": [".md", ".adoc"]
+  "extensions": [".md", ".adoc"],
+  "skip_dirs": [".venv"],
 }
 ```
 

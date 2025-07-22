@@ -1,4 +1,5 @@
 {
   "project_root": ".",
-  "extensions": [".md", ".adoc", ".puml"]
+  "extensions": [".md", ".adoc", ".puml"],
+  "skip_dirs": [".venv", "node_modules"]
 }
