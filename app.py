@@ -55,8 +55,11 @@ logger.debug(f"Extensions : {', '.join(sorted(exts))}")
 # ── 2) lecture fichiers ─────────────────────────────────────
 logger.debug("Étape 2 : analyse des fichiers")
 docs = []
-# Dossiers à exclure pour accélérer le scan
-skip_dirs = {".git", ".venv", "node_modules", "target"}
+# Dossiers à exclure pour accélérer le scan (paramètre `skip_dirs`)
+skip_dirs = set(cfg.get(
+    "skip_dirs",
+    [".git", ".venv", "venv", "node_modules", "target"]
+))
 for f in root.rglob("*"):
     # Ignorer les fichiers situés dans les dossiers exclus
     if any(part in skip_dirs for part in f.parts):
