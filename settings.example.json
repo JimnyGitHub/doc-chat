@@ -1,5 +1,6 @@
 {
   "project_root": ".",
   "extensions": [".md", ".adoc", ".puml"],
-  "skip_dirs": [".venv", "node_modules"]
+  "skip_dirs": [".venv", "node_modules"],
+  "request_timeout": 120
 }

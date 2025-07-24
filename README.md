@@ -96,16 +96,19 @@ cp settings.example.json settings.json
 cp settings.example.json settings.json
 ```
 
-2. Modifiez le fichier `settings.json` pour indiquer le **chemin local** du projet, les extensions à indexer et les dossiers à ignorer :
+2. Modifiez le fichier `settings.json` pour indiquer le **chemin local** du projet, les extensions à indexer, les dossiers à ignorer et le délai maximal des requêtes :
 ```json
 {
   "project_root": "../chemin/vers/mon-projet/",
   "extensions": [".md", ".adoc"],
   "skip_dirs": [".venv"],
+  "request_timeout": 120,
 }
 ```
 
 Ce fichier est ignoré dans `.gitignore`.
+
+La clé `request_timeout` indique, en secondes, le délai d'attente maximal pour les requêtes envoyées à Ollama (120 par défaut).
 
 ---
 
