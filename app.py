@@ -47,10 +47,13 @@ with open("settings.json") as f:
 root = Path(cfg["project_root"]).resolve()
 # Extensions à prendre en compte, exemple : [".md", ".adoc"]
 exts = {e.lower() for e in cfg.get("extensions", [".md", ".adoc", ".puml"])}
+# Délai maximal pour les requêtes vers Ollama
+timeout = cfg.get("request_timeout", 120)
 if not root.exists():
     raise FileNotFoundError(root)
 logger.debug(f"Racine du projet : {root}")
 logger.debug(f"Extensions : {', '.join(sorted(exts))}")
+logger.debug(f"Timeout Ollama : {timeout}s")
 
 # ── 2) lecture fichiers ─────────────────────────────────────
 logger.debug("Étape 2 : analyse des fichiers")
@@ -80,8 +83,8 @@ logger.debug(f"{len(docs)} fichiers chargés")
 
 # ── 3) config 100 % locale ──────────────────────────────────
 logger.debug("Étape 3 : configuration des modèles")
-Settings.llm         = Ollama(model="mistral")
-Settings.embed_model = OllamaEmbedding(model_name="mistral")
+Settings.llm         = Ollama(model="mistral", request_timeout=timeout)
+Settings.embed_model = OllamaEmbedding(model_name="mistral", request_timeout=timeout)
 
 # ── 4) index & moteur ───────────────────────────────────────
 logger.debug("Étape 4 : création de l'index")
