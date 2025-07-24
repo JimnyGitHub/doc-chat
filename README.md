@@ -78,6 +78,9 @@ Une fois le `venv` activé :
 ```bash
 pip install -r requirements.txt
 ```
+Le paquet `ollama` doit être en version `>=0.5.1` afin d'être compatible avec
+`llama-index-llms-ollama`. Le serveur **Ollama** peut rester en `0.1.x`, mais
+il est recommandé de le garder à jour.
 Ensuite, copiez le fichier d'exemple pour créer votre configuration locale :
 ```bash
 cp settings.example.json settings.json
