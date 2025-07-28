@@ -28,6 +28,10 @@ logger = logging.getLogger(__name__)
 for var in ["HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy"]:
     os.environ.pop(var, None)
 
+# désactiver la télémétrie pour empêcher toute connexion sortante
+os.environ["GRADIO_ANALYTICS_ENABLED"] = "false"
+os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
+
 
 # ── 0) vérification du serveur Ollama ───────────────────────
 def check_ollama(url: str = "http://localhost:11434") -> None:
@@ -106,4 +110,5 @@ def chat(q): return str(engine.query(q))
 
 logger.debug("Étape 5 : lancement de l'interface web")
 gr.Interface(chat, "text", "text",
-             title="Assistant IA – Doc projet Java").launch()
+             title="Assistant IA – Doc projet Java").launch(
+    share=False, analytics_enabled=False)
