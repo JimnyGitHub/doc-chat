@@ -3,6 +3,7 @@ from pathlib import Path
 import requests
 import argparse
 import logging
+import os
 
 from llama_index.core import Document, VectorStoreIndex
 from llama_index.llms.ollama import Ollama
@@ -23,12 +24,21 @@ logging.basicConfig(
     format="%(message)s")
 logger = logging.getLogger(__name__)
 
+# ── suppression d'un proxy éventuel défini via les variables d'environnement
+for var in ["HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy"]:
+    os.environ.pop(var, None)
+
+
 # ── 0) vérification du serveur Ollama ───────────────────────
 def check_ollama(url: str = "http://localhost:11434") -> None:
     """Vérifie que le serveur Ollama est disponible."""
     logger.debug("Connexion au serveur Ollama…")
     try:
-        r = requests.get(f"{url}/api/tags", timeout=5)
+        r = requests.get(
+            f"{url}/api/tags",
+            timeout=5,
+            proxies={"http": None, "https": None},
+        )
         r.raise_for_status()
     except Exception as e:
         raise SystemExit(
