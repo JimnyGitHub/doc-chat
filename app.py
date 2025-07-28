@@ -62,6 +62,8 @@ root = Path(cfg["project_root"]).resolve()
 # Extensions à prendre en compte, exemple : [".md", ".adoc"]
 exts = {e.lower() for e in cfg.get("extensions", [".md", ".adoc", ".puml"])}
 # Délai maximal pour les requêtes vers Ollama
+# Augmentez ce délai dans `settings.json` si vous rencontrez des erreurs
+# `ReadTimeout` lors des appels au modèle.
 timeout = cfg.get("request_timeout", 120)
 if not root.exists():
     raise FileNotFoundError(root)

@@ -108,7 +108,7 @@ cp settings.example.json settings.json
 
 Ce fichier est ignoré dans `.gitignore`.
 
-La clé `request_timeout` indique, en secondes, le délai d'attente maximal pour les requêtes envoyées à Ollama (120 par défaut).
+La clé `request_timeout` indique, en secondes, le délai d'attente maximal pour les requêtes envoyées à Ollama (120 par défaut). Si vous obtenez une erreur `ReadTimeout` lors d'une question, augmentez simplement cette valeur (par exemple `300`).
 
 ---
 
