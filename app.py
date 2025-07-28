@@ -110,5 +110,5 @@ def chat(q): return str(engine.query(q))
 
 logger.debug("Étape 5 : lancement de l'interface web")
 gr.Interface(chat, "text", "text",
-             title="Assistant IA – Doc projet Java").launch(
-    share=False, analytics_enabled=False)
+             title="Assistant IA – Doc projet").launch(
+    share=False)
