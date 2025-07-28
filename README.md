@@ -169,6 +169,9 @@ ollama run mistral
 python app.py
 ```
 
+Pour automatiser cette procédure, utilisez `reset-env.sh` sous Linux ou macOS,
+et `reset-env.cmd` sous Windows.
+
 ---
 
 ## ✅ Compatible avec Windows, Linux, macOS
