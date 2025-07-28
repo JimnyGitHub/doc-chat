@@ -131,6 +131,12 @@ Si l'interface ne s'ouvre pas automatiquement, accédez-y via [http://localhost:
 
 Lors de la première utilisation, lancez `ollama run mistral` une fois pour télécharger le modèle localement.
 
+Afin d’empêcher tout trafic sortant, Gradio peut envoyer des statistiques
+d’utilisation vers Hugging Face. Ce comportement se désactive en ajoutant
+`analytics_enabled=False` dans `app.py` et/ou en définissant la variable
+d’environnement `GRADIO_ANALYTICS_ENABLED=false` avant de lancer
+l’application.
+
 ---
 
 ## 💬 Exemples de questions
