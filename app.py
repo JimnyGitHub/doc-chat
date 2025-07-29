@@ -37,6 +37,7 @@ for var in ["HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy"]:
 
 # désactiver la télémétrie pour empêcher toute connexion sortante
 os.environ["GRADIO_ANALYTICS_ENABLED"] = "false"
+# désactiver la télémétrie pour empêcher toute connexion sortante
 os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
 
 
@@ -57,13 +58,16 @@ def check_ollama(url: str = "http://localhost:11434") -> None:
         ) from e
     logger.debug("Serveur Ollama prêt")
 
-logger.debug("Étape 0 : vérification du serveur")
-check_ollama()
-
 # ── 1) chemin projet ────────────────────────────────────────
 logger.debug("Étape 1 : lecture de la configuration")
 with open("settings.json") as f:
     cfg = json.load(f)
+
+base_url = cfg.get("base_url", "http://localhost:11434")
+logger.debug(f"Base URL Ollama : {base_url}")
+
+logger.debug("Étape 0 : vérification du serveur")
+check_ollama(base_url)
 
 root = Path(cfg["project_root"]).resolve()
 # Extensions à prendre en compte, exemple : [".md", ".adoc"]
@@ -106,8 +110,8 @@ logger.debug(f"{len(docs)} fichiers chargés")
 
 # ── 3) config 100 % locale ──────────────────────────────────
 logger.debug("Étape 3 : configuration des modèles")
-Settings.llm         = Ollama(model="mistral", request_timeout=timeout)
-Settings.embed_model = OllamaEmbedding(model_name="mistral", request_timeout=timeout)
+Settings.llm         = Ollama(model="mistral", base_url=base_url, request_timeout=timeout)
+Settings.embed_model = OllamaEmbedding(model_name="mistral", base_url=base_url, request_timeout=timeout)
 
 # ── 4) index & moteur ───────────────────────────────────────
 logger.debug("Étape 4 : création de l'index")

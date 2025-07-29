@@ -103,12 +103,15 @@ cp settings.example.json settings.json
   "extensions": [".md", ".adoc"],
   "skip_dirs": [".venv"],
   "request_timeout": 120,
+  "base_url": "http://localhost:11434",
 }
 ```
 
 Ce fichier est ignoré dans `.gitignore`.
 
 La clé `request_timeout` indique, en secondes, le délai d'attente maximal pour les requêtes envoyées à Ollama (120 par défaut). Si vous obtenez une erreur `ReadTimeout` lors d'une question, augmentez simplement cette valeur (par exemple `300`).
+
+La clé `base_url` permet de spécifier l'URL du serveur **Ollama** si celui-ci n'est pas accessible sur `http://localhost:11434`.
 
 ---
 
