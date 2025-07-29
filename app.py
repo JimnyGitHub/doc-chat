@@ -5,6 +5,13 @@ import argparse
 import logging
 import os
 
+try:
+    from tqdm import tqdm  # barre de progression optionnelle
+except Exception:
+    # si tqdm n'est pas installé, on définit un simple pass-through
+    def tqdm(it, *args, **kwargs):
+        return it
+
 from llama_index.core import Document, VectorStoreIndex
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
@@ -79,7 +86,7 @@ skip_dirs = set(cfg.get(
     "skip_dirs",
     [".git", ".venv", "venv", "node_modules", "target"]
 ))
-for f in root.rglob("*"):
+for f in tqdm(root.rglob("*"), desc="Analyse des fichiers"):
     # Ignorer les fichiers situés dans les dossiers exclus
     if any(part in skip_dirs for part in f.parts):
         continue
@@ -104,6 +111,7 @@ Settings.embed_model = OllamaEmbedding(model_name="mistral", request_timeout=tim
 
 # ── 4) index & moteur ───────────────────────────────────────
 logger.debug("Étape 4 : création de l'index")
+print("\u23F3 Génération de l'index, cela peut durer plusieurs minutes…")
 index  = VectorStoreIndex.from_documents(docs)     # Settings déjà peuplé
 engine = index.as_query_engine()
 
